@@ -1,0 +1,428 @@
+:root {
+  --bg: #1B1410;
+  --surface: #251C16;
+  --surface2: #2F241C;
+  --ink: #F5EDE3;
+  --ink-dim: #B3A395;
+  --line: #3A2E24;
+
+  --mango: #FF9345;
+  --mango-tint: rgba(255, 147, 69, 0.16);
+  --dragonfruit: #FF5F87;
+  --dragonfruit-tint: rgba(255, 95, 135, 0.16);
+  --pandan: #59C48A;
+  --pandan-tint: rgba(89, 196, 138, 0.16);
+  --pool: #45C6D6;
+  --pool-tint: rgba(69, 198, 214, 0.16);
+  --satay: #FFC145;
+  --satay-tint: rgba(255, 193, 69, 0.16);
+}
+
+* { box-sizing: border-box; }
+
+html, body { height: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+  line-height: 1.62;
+  -webkit-font-smoothing: antialiased;
+}
+
+.display {
+  font-family: 'Do Hyeon', 'Noto Sans KR', sans-serif;
+  letter-spacing: 0.01em;
+}
+
+.page {
+  max-width: 480px;
+  margin: 0 auto;
+  padding-bottom: calc(88px + env(safe-area-inset-bottom, 0px));
+}
+
+.pad { padding: 0 20px; }
+
+/* TICKET HERO (boarding-pass motif) */
+.ticket-wrap {
+  padding: calc(28px + env(safe-area-inset-top, 0px)) 18px 0;
+}
+
+.ticket {
+  background: linear-gradient(150deg, var(--mango) 0%, var(--dragonfruit) 100%);
+  border-radius: 22px;
+  transform: rotate(-1.4deg);
+  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.35);
+  position: relative;
+}
+
+.ticket-main { padding: 26px 24px 22px; }
+
+.ticket-route {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: rgba(27, 20, 16, 0.65);
+}
+
+.ticket-route .plane { width: 14px; height: 14px; color: rgba(27, 20, 16, 0.5); transform: scaleX(-1); }
+
+.ticket-date {
+  display: block;
+  font-family: ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  font-size: 11.5px;
+  letter-spacing: 0.04em;
+  color: rgba(27, 20, 16, 0.55);
+  margin: 4px 0 16px;
+}
+
+.ticket h1 {
+  font-family: 'Do Hyeon', sans-serif;
+  font-size: clamp(30px, 9vw, 42px);
+  line-height: 1.28;
+  margin: 0 0 14px;
+  color: #211208;
+}
+
+.ticket p.lede {
+  font-size: 15px;
+  color: rgba(33, 18, 8, 0.75);
+  margin: 0;
+  max-width: 36ch;
+  font-weight: 500;
+}
+
+.ticket p.lede .lede-sub { opacity: 0.85; }
+
+.ticket-stub {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 4px;
+  padding: 18px 22px 20px;
+  border-top: 2px dashed rgba(27, 20, 16, 0.28);
+}
+
+.ticket-stub::before,
+.ticket-stub::after {
+  content: '';
+  position: absolute;
+  top: -13px;
+  width: 26px;
+  height: 26px;
+  background: var(--bg);
+  border-radius: 50%;
+}
+
+.ticket-stub::before { left: -13px; }
+.ticket-stub::after { right: -13px; }
+
+.stub-item { text-align: center; }
+
+.stub-item .num {
+  font-family: 'Do Hyeon', sans-serif;
+  font-size: 19px;
+  color: #211208;
+  display: block;
+}
+
+.stub-item .num.emoji-num { font-size: 32px; line-height: 1.1; }
+
+.stub-item .label {
+  font-size: 10.5px;
+  color: rgba(33, 18, 8, 0.6);
+  margin-top: 2px;
+  display: block;
+}
+
+/* SECTIONS */
+section { padding: 46px 0 4px; scroll-margin-top: 20px; }
+
+.sec-head {
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sec-head .badge {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
+  flex-shrink: 0;
+}
+
+.sec-head h2 {
+  font-family: 'Do Hyeon', sans-serif;
+  font-size: 21px;
+  margin: 0;
+  color: var(--ink);
+  font-weight: 400;
+}
+
+.desc { color: var(--ink-dim); font-size: 13px; margin: 4px 0 0 44px; }
+
+/* TIMELINE ACCORDION */
+.day-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  margin-bottom: 12px;
+  overflow: hidden;
+}
+
+.day-toggle {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 18px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  color: inherit;
+  text-align: left;
+}
+
+.day-toggle-title { display: flex; align-items: baseline; gap: 10px; }
+.day-toggle .day-num { font-family: 'Do Hyeon', sans-serif; font-size: 18px; color: var(--mango); }
+.day-toggle .day-date { font-size: 12.5px; color: var(--ink-dim); }
+
+.chevron {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+  color: var(--ink-dim);
+}
+
+.day-card.open .chevron { transform: rotate(180deg); }
+.day-body { display: none; padding: 0 18px 18px; }
+.day-card.open .day-body { display: block; }
+
+.activity { font-size: 14.5px; color: var(--ink); padding: 8px 0; border-top: 1px solid var(--line); }
+.activity:first-child { border-top: none; }
+.activity strong { font-weight: 700; color: #FFD9BA; }
+
+.memo {
+  margin: 6px 0 10px;
+  padding: 10px 13px;
+  background: var(--mango-tint);
+  border-radius: 10px;
+  font-size: 13px;
+  color: var(--ink);
+}
+
+.memo .who { color: var(--mango); font-weight: 700; margin-right: 6px; }
+
+/* AWARDS PODIUM */
+.podium { display: flex; flex-direction: column; gap: 10px; }
+
+.award-spotlight {
+  background: linear-gradient(160deg, var(--satay-tint), var(--surface) 65%);
+  border: 1px solid var(--satay);
+  border-radius: 18px;
+  padding: 22px 20px;
+}
+
+.award-spotlight .rank-medal,
+.award-card .rank-medal { font-size: 26px; display: block; margin-bottom: 6px; line-height: 1; }
+.award-card .rank-medal { font-size: 21px; }
+
+.award-spotlight .nickname {
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--ink-dim);
+  margin-left: 6px;
+}
+
+.award-runners { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+.award-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 16px;
+}
+
+.award-card.silver { border-color: var(--pool); }
+.award-card.bronze { border-color: var(--dragonfruit); }
+
+.award-pending {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: 1px dashed var(--line);
+  border-radius: 14px;
+  padding: 14px 16px;
+  opacity: 0.6;
+}
+
+.award-pending .rank-medal { font-size: 20px; }
+.award-pending .tag { margin: 0; }
+.award-pending .pending-text { margin: 2px 0 0; font-size: 12.5px; color: var(--ink-dim); }
+
+.tag { font-size: 12px; font-weight: 700; color: var(--satay); margin: 0 0 6px; }
+h3.display { font-size: 19px; margin: 0 0 6px; font-weight: 400; color: var(--ink); }
+.award-spotlight p:not(.tag),
+.award-card p:not(.tag) { margin: 0; color: var(--ink-dim); font-size: 13.5px; }
+.who-pill { display: inline-block; font-size: 12px; color: var(--ink-dim); margin-top: 10px; }
+
+/* QUOTES (chat bubbles) */
+.bubble-list { display: flex; flex-direction: column; gap: 16px; }
+
+.bubble {
+  max-width: 86%;
+  border-radius: 18px;
+  padding: 16px 18px;
+  position: relative;
+}
+
+.bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -7px;
+  left: 22px;
+  width: 16px;
+  height: 16px;
+  background: inherit;
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+}
+
+.bubble.align-right { margin-left: auto; }
+.bubble.align-right::after { left: auto; right: 22px; clip-path: polygon(100% 0, 100% 100%, 0 0); }
+
+.mango-bubble { background: var(--mango-tint); }
+.pool-bubble { background: var(--pool-tint); }
+.pandan-bubble { background: var(--pandan-tint); }
+
+.bubble p.q { font-family: 'Do Hyeon', sans-serif; font-size: 18px; color: var(--ink); margin: 0 0 6px; font-weight: 400; }
+.bubble p.ctx { font-size: 12px; color: var(--ink-dim); margin: 0; }
+
+/* QA TABS */
+.person-tabs {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding-bottom: 2px;
+}
+
+.person-tabs::-webkit-scrollbar { display: none; }
+
+.person-tab {
+  flex: 0 0 auto;
+  font-family: 'Do Hyeon', sans-serif;
+  font-size: 14.5px;
+  color: var(--ink-dim);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  padding: 8px 16px;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.person-tab.active { color: var(--bg); background: var(--pool); border-color: var(--pool); }
+
+.person-panel {
+  display: none;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 4px 18px;
+  margin-top: 14px;
+}
+
+.person-panel.active { display: block; }
+
+.qa-row { padding: 10px 0; border-top: 1px solid var(--line); }
+.qa-row:first-child { border-top: none; }
+.qa-q { font-size: 12px; color: var(--pool); font-weight: 700; margin: 0 0 4px; }
+.qa-a { font-size: 14px; color: var(--ink); margin: 0; }
+
+/* BUCKET LIST */
+.bucket-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px; }
+
+.bucket-list li {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  font-size: 14px;
+  color: var(--ink);
+  background: var(--pandan-tint);
+  border-radius: 10px;
+  padding: 10px 14px;
+}
+
+.bucket-list li.no { background: var(--dragonfruit-tint); }
+.bucket-list .icon { flex-shrink: 0; font-size: 14px; }
+
+/* FOOTER */
+footer { padding: 54px 0 14px; text-align: center; }
+
+.footer-stamp {
+  display: inline-block;
+  border: 2px solid var(--dragonfruit);
+  border-radius: 10px;
+  padding: 10px 22px;
+  transform: rotate(-3deg);
+  margin-bottom: 14px;
+}
+
+.footer-stamp .sign { font-family: 'Do Hyeon', sans-serif; font-size: 17px; color: var(--dragonfruit); display: block; }
+footer p { color: var(--ink-dim); font-size: 12.5px; margin: 0; }
+
+/* BOTTOM TAB BAR */
+.tabbar {
+  position: fixed;
+  left: 0; right: 0; bottom: 0;
+  z-index: 20;
+  background: rgba(27, 20, 16, 0.88);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid var(--line);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+.tabbar-inner {
+  max-width: 480px;
+  margin: 0 auto;
+  display: flex;
+}
+
+.tab-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 10px 2px 8px;
+  background: none;
+  border: none;
+  color: var(--ink-dim);
+  font-family: 'Noto Sans KR', sans-serif;
+  cursor: pointer;
+}
+
+.tab-item svg { width: 21px; height: 21px; }
+.tab-item span { font-size: 10.5px; font-weight: 500; }
+.tab-item.active { color: var(--mango); }
+.tab-item:active { transform: scale(0.96); }
+
+@media (min-width: 640px) {
+  .bubble { max-width: 70%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { scroll-behavior: auto !important; transition: none !important; }
+}
